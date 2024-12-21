@@ -1,9 +1,9 @@
 import { useAsyncState } from '@vueuse/core'
 import { ref, computed } from 'vue-demi'
-import useNotify from './useNotify'
+import useNotify from '@/composables/useNotify'
 import { useApp } from '@/stores/app'
 
-export default function useCRUD ({
+export default function useCRUD({
   createFetch,
   createSuccess = '新增成功',
   createFail = '新增失敗',
@@ -13,7 +13,7 @@ export default function useCRUD ({
   readFetch,
   readSuccess = '讀取成功',
   readFail = '讀取失敗',
-  isShowReadSuccess = true,
+  isShowReadSuccess = false,
   isShowReadFail = true,
 
   updateFetch,
@@ -31,119 +31,121 @@ export default function useCRUD ({
   readListFetch,
   readListSuccess = '讀取列表成功',
   readListFail = '讀取列表失敗',
-  isShowReadListSuccess = true,
+  isShowReadListSuccess = false,
   isShowReadListFail = true,
-
 }) {
-  const { notify, notifyAPIError } = useNotify()
-  const storeApp = useApp()
-  const reqCreate = useAsyncState(createFetch, {}, { immediate: false })
-  const reqRead = useAsyncState(readFetch, {}, { immediate: false })
-  const reqUpdate = useAsyncState(updateFetch, {}, { immediate: false })
-  const reqDelete = useAsyncState(deleteFetch, {}, { immediate: false })
-  const reqReadList = useAsyncState(readListFetch, {}, { immediate: false })
-
   const form = ref()
+  const storeApp = useApp()
+  const { notify, notifyAPIError } = useNotify()
 
+  // 使用 useAsyncState 創建異步狀態
+  const reqCreate = useAsyncStateWithOptions(createFetch)
+  const reqRead = useAsyncStateWithOptions(readFetch)
+  const reqUpdate = useAsyncStateWithOptions(updateFetch)
+  const reqDelete = useAsyncStateWithOptions(deleteFetch)
+  const reqReadList = useAsyncStateWithOptions(readListFetch)
+
+  // computed properties
+  const isLoading = computed(() => 
+    reqCreate.isLoading.value || 
+    reqRead.isLoading.value || 
+    reqUpdate.isLoading.value || 
+    reqDelete.isLoading.value || 
+    reqReadList.isLoading.value
+  )
+  const isReading = computed(() => reqRead.isLoading.value)
+  const isReadingList = computed(() => reqReadList.isLoading.value)
+  const isCreate = computed(() => reqCreate.isLoading.value)
+  const isUpdate = computed(() => reqUpdate.isLoading.value)
+  const isDelete = computed(() => reqDelete.isLoading.value)
+
+  // 輔助函數
+  const handleApiError = (request, actionType, errorMessage, showError = true) => {
+    storeApp.isLoading = false
+    storeApp[actionType] = false
+    storeApp.isSubmit = false
+
+    const message = extractErrorMessage(request)
+    if (showError) {
+      notifyAPIError({ message: message || errorMessage })
+    }
+
+    return [null, request.error.value]
+  }
+
+  const handleApiSuccess = (actionType, successMessage, showSuccess = true, result = true) => {
+    storeApp.isLoading = false
+    storeApp[actionType] = false
+    storeApp.isSubmit = false
+
+    if (showSuccess) {
+      notify({ message: successMessage, type: 'positive' })
+    }
+
+    return [result, null]
+  }
+
+  const extractErrorMessage = (request) => {
+    return request.error.value.response?.data?.error?.message || 
+           request.error.value.response?.data?.message || 
+           JSON.parse(request.error.value.request?.responseText)?.error?.message || 
+           request.error.value
+  }
+
+  function useAsyncStateWithOptions(fetchFn, options) {
+    return useAsyncState(fetchFn, {}, { immediate: false, ...options })
+  }
+
+  // CRUD 操作
   const callCreateFetch = async (id = null, payload) => {
     storeApp.isLoading = true
     storeApp.isCreate = true
     const res = await reqCreate.execute(0, id, payload)
     if (reqCreate.error.value) {
-      storeApp.isLoading = false
-      storeApp.isCreate = false
-      storeApp.isSubmit = false
-      const message = reqCreate.error.value.response.data.error?.message || reqCreate.error.value.response.data.message || JSON.parse(reqCreate.error.value.request.responseText)?.error?.message || reqCreate.error.value
-      isShowCreateFail && notifyAPIError({ message })
-      return [null, reqCreate.error.value]
-    } else {
-      isShowCreateSuccess && notify({ message: createSuccess, type: 'positive' })
-      storeApp.isLoading = false
-      storeApp.isCreate = false
-      storeApp.isSubmit = false
-      return [res || true, null]
+      return handleApiError(reqCreate, 'isCreate', createFail, isShowCreateFail)
     }
+    return handleApiSuccess('isCreate', createSuccess, isShowCreateSuccess, res || true)
   }
 
   const callReadFetch = async (id = null, payload = null) => {
     storeApp.isLoading = true
     storeApp.isReading = true
-    console.log('🚀 ~ callReadFetch ~ payload', id, payload)
     const res = await reqRead.execute(0, id, payload)
     if (reqRead.error.value) {
-      storeApp.isLoading = false
-      storeApp.isReading = false
-      const message = reqRead.error.value.response.data.error?.message || reqRead.error.value.response.data.message || JSON.parse(reqRead.error.value.request.responseText)?.error?.message || reqRead.error.value
-      isShowReadFail && notifyAPIError({ message })
-      return [null, reqRead.error.value]
-    } else {
-      storeApp.isLoading = false
-      storeApp.isReading = false
-      return [res, null]
+      return handleApiError(reqRead, 'isLoading', readFail, isShowReadFail)
     }
+    return handleApiSuccess('isReading', readSuccess, isShowReadSuccess, res || true)
   }
 
   const callUpdateFetch = async (id, payload = null) => {
     storeApp.isLoading = true
     storeApp.isUpdate = true
     const res = await reqUpdate.execute(0, id, payload)
-    console.log('🚀 ~ callUpdateFetch ~ res', res)
     if (reqUpdate.error.value) {
-      storeApp.isLoading = false
-      storeApp.isUpdate = false
-      storeApp.isSubmit = false
-      const message = reqUpdate.error.value.response.data.error?.message || reqUpdate.error.value.response.data.message || JSON.parse(reqUpdate.error.value.request.responseText)?.error?.message || reqUpdate.error.value
-      isShowUpdateFail && notifyAPIError({ message })
-      return [null, reqUpdate.error.value]
-    } else {
-      isShowUpdateSuccess && notify({ message: updateSuccess, type: 'positive' })
-      storeApp.isLoading = false
-      storeApp.isUpdate = false
-      storeApp.isSubmit = false
-      return [res || true, null]
+      return handleApiError(reqUpdate, 'isUpdate', updateFail, isShowUpdateFail)
     }
+    return handleApiSuccess('isUpdate', updateSuccess, isShowUpdateSuccess, res || true)
   }
 
   const callDeleteFetch = async (id) => {
     storeApp.isLoading = true
     storeApp.isDelete = true
     const res = await reqDelete.execute(0, id)
-    console.log('🚀 ~ callDeleteFetch ~ res', res)
     if (reqDelete.error.value) {
-      storeApp.isLoading = false
-      storeApp.isDelete = false
-      const message = reqDelete.error.value.response.data.error?.message || reqDelete.error.value.response.data.message || JSON.parse(reqDelete.error.value.request.responseText)?.error?.message || reqDelete.error.value
-      isShowDeleteFail && notifyAPIError({ message })
-      return [null, reqDelete.error.value]
-    } else {
-      isShowDeleteSuccess && notify({ message: deleteSuccess, type: 'positive' })
-      storeApp.isLoading = false
-      storeApp.isDelete = false
-      return [res || true, null]
+      return handleApiError(reqDelete, 'isDelete', deleteFail, isShowDeleteFail)
     }
+    return handleApiSuccess('isDelete', deleteSuccess, isShowDeleteSuccess, res || true)
   }
 
   const callReadListFetch = async (id = null, payload = null) => {
     storeApp.isReadingList = true
-    console.log('🚀 ~ callReadListFetch ~ payload', payload)
     const res = await reqReadList.execute(0, id, payload)
     if (reqReadList.error.value) {
-      storeApp.isReadingList = false
-      const message = reqReadList.error.value.response.data.error?.message || reqReadList.error.value.response.data.message || JSON.parse(reqReadList.error.value.request.responseText)?.error?.message || reqReadList.error.value
-      isShowReadListFail && notifyAPIError({ message })
-      return [null, reqReadList.error.value]
-    } else {
-      storeApp.isReadingList = false
-      return [res, null]
+      return handleApiError(reqReadList, 'isReadingList', readListFail, isShowReadListFail)
     }
+    return handleApiSuccess('isReadingList', readListSuccess, isShowReadListSuccess, res || true)
   }
 
-  const isLoading = computed(() => reqCreate.isLoading.value || reqRead.isLoading.value || reqUpdate.isLoading.value || reqDelete.isLoading.value || reqReadList.isLoading.value)
-  const isReading = computed(() => reqRead.isLoading.value)
-  const isReadingList = computed(() => reqReadList.isLoading.value)
-  const isCreate = computed(() => reqCreate.isLoading.value)
-  const isUpdate = computed(() => reqUpdate.isLoading.value)
-  const isDelete = computed(() => reqDelete.isLoading.value)
   return {
     form,
     isLoading,
