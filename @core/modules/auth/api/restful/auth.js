@@ -1,137 +1,121 @@
-import request from '@core/utils/request'
+import { fetch } from '@/composables/useCustomFetch'
 
 export const AuthResource = ({
   uri = 'auth',
 }) => {
+
   const login = ({ payload }) => {
-    return request({
-      url: `/${uri}/login`,
+    return fetch(`/${uri}/login`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const register = ({ payload }) => {
-    return request({
-      url: `/${uri}/register`,
+    return fetch(`/${uri}/register`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const forgetPassword = ({ payload }) => {
-    return request({
-      url: `/${uri}/forget_password`,
+    return fetch(`/${uri}/forget_password`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const getVerifyCode = ({ payload }) => {
-    return request({
-      url: `/${uri}/verify_code`,
+    return fetch(`/${uri}/verify_code`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const getLoginCaptcha = ({ query }) => {
-    return request({
-      url: `/${uri}/login_captcha`,
+    return fetch(`/${uri}/login_captcha`, {
       method: 'get',
       params: query,
-    }).then(res => res.data)
-      .then(res => res.data)
+    });
   }
 
   const logout = () => {
-    return request({
-      url: `/${uri}/logout`,
+    return fetch(`/${uri}/logout`, {
       method: 'post',
-    })
+    });
   }
 
   const bindCheck = ({ payload }) => {
-    return request({
-      url: `/${uri}/bind/action/check`,
+    return fetch(`/${uri}/bind/action/check`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const bind = ({ payload }) => {
-    return request({
-      url: `/${uri}/bind`,
+    return fetch(`/${uri}/bind`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const unbind = ({ payload }) => {
-    return request({
-      url: `/${uri}/unbind`,
+    return fetch(`/${uri}/unbind`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const me = () => {
-    return request({
-      url: `/${uri}/me`,
+    return fetch(`/${uri}/me`, {
       method: 'get',
-    }).then(res => res.data)
-      .then(res => {
-        const meObj = {
-          ...res.data,
-        }
-        return meObj
-      })
+    }).then(res => {
+      const meObj = {
+        ...res,
+      }
+      return meObj;
+    });
   }
 
   const profile = ({ payload }) => {
-    return request({
-      url: `/${uri}/me`,
+    return fetch(`/${uri}/me`, {
       method: 'patch',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const permission = () => {
-    return request({
-      url: `/${uri}/permission`,
+    return fetch(`/${uri}/permission`, {
       method: 'get',
-    }).then(res => res.data)
-      .then(res => {
-        const { list, meta } = res.data
-        if (meta?.pagination) {
-          const { count, total } = meta.pagination
-          return {
-            list: list,
-            total: total,
-            count: count,
-          }
-        } else {
-          return {
-            list: list,
-          }
-        }
-      })
+    }).then(res => {
+      const { list, meta } = res;
+      if (meta?.pagination) {
+        const { count, total } = meta.pagination;
+        return {
+          list: list,
+          total: total,
+          count: count,
+        };
+      } else {
+        return {
+          list: list,
+        };
+      }
+    });
   }
 
   const changePassword = ({ payload }) => {
-    return request({
-      url: `/${uri}/change_password`,
+    return fetch(`/${uri}/change_password`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   const refreshToken = ({ payload }) => {
-    return request({
-      url: `/${uri}/refresh_token`,
+    return fetch(`/${uri}/refresh_token`, {
       method: 'post',
-      data: payload,
-    }).then(res => res.data)
+      body: payload,
+    });
   }
 
   return {

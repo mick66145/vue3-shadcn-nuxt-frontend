@@ -4,7 +4,7 @@ import { getToken } from '@core/utils/auth'
 import useNotify from '@/composables/useNotify'
 import useLogout from '@/composables/useLogout'
 
-export const useCustomFetch = () => {
+export default function useCustomFetch() {
   const createFetchOptions = (options = {}) => {
     const storeUser = useUser()
     const config = useRuntimeConfig()
@@ -93,5 +93,3 @@ export const useCustomFetch = () => {
     fetch: fetchData
   }
 }
-
-export default useCustomFetch
