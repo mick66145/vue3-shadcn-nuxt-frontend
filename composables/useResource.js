@@ -1,4 +1,4 @@
-import { fetch } from '@/composables/useCustomFetch'
+import useCustomFetch from '@/composables/useCustomFetch'
 
 export default function useResource({
   uri,
@@ -8,6 +8,7 @@ export default function useResource({
   patchModel = (item) => item,
   putModel = (item) => item,
 }) {
+  const { fetch } = useCustomFetch()
 
   const list = async ({ query }) => {
     const response = await fetch(`/${uri}`, {

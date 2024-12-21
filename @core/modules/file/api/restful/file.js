@@ -1,20 +1,21 @@
 import Configuration from '@/configuration'
 import useResource from '@/composables/useResource'
-import request from '@core/utils/request'
+import useCustomFetch from '@/composables/useCustomFetch'
 
 const fileBaseUrl = `${Configuration('fileServerHost')}`
 
 export const FileResource = ({
   uri = 'file',
 }) => {
-  const upload = ({ file }) => {
+  const { fetch } = useCustomFetch()
+
+  const upload = async ({ file }) => {
     const formData = new FormData()
     formData.append('file', file)
-    return request({
-      baseURL: `${fileBaseUrl}`,
-      url: `/${uri}/upload`,
+    
+    return fetch(`/${uri}/upload`, {
       method: 'post',
-      data: formData,
+      body: formData,
       headers: { 'Content-Type': 'multipart/form-data' },
     })
   }

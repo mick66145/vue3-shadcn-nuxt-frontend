@@ -1,8 +1,9 @@
-import { fetch } from '@/composables/useCustomFetch'
+import useCustomFetch from '@/composables/useCustomFetch'
 
 export const AuthResource = ({
   uri = 'auth',
 }) => {
+  const { fetch } = useCustomFetch()
 
   const login = ({ payload }) => {
     return fetch(`/${uri}/login`, {
