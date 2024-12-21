@@ -22,5 +22,10 @@ logs
 .env
 .env.*
 !.env.example
+!.env.localhost
+!.env.dev
+!.env.beta
+!.env.production
+
 
 .history
