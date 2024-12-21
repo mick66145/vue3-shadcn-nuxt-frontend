@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    'nuxt-quasar-ui',
     'dayjs-nuxt',
     "nuxt-lodash",
     'nuxt-swiper',
