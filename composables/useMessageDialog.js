@@ -25,7 +25,7 @@ export default function useMessageDialog () {
   })
 
   const messageDelete = ({ title, message, confirmButtonText, cancelButtonText, cancelButtonColor }) => store.alert({
-    title: title || i18n.global.t('g.dialog.default-title'),
+    title: title || i18n.global.t('g.dialog.delete-title'),
     status: 'error',
     message,
     persistent: true,

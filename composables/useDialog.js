@@ -2,7 +2,7 @@ import { ref } from 'vue-demi'
 import useCRUD from '@/composables/useCRUD'
 import useQuickState from '@/composables/useQuickState'
 import mapKeys from 'lodash-es/mapKeys'
-export default function useDialog({
+export default function useDialog ({
   formData,
   createFetch,
   createSuccess = '新增成功',
@@ -24,9 +24,11 @@ export default function useDialog({
   readListSuccess = '讀取列表成功',
   readListFail = '讀取列表失敗',
 
+  showDialogCallback = () => {},
 }) {
   // data
   const form = ref()
+  const dialog = ref()
   const data = useQuickState(formData)
   const id = ref(null)
   const mode = ref() // create、edit、delete
@@ -45,10 +47,10 @@ export default function useDialog({
     mode.value = dialogMode
     if (rowData) {
       if (Array.isArray(rowData)) {
-        data.list = rowData
-        data.total = rowData.length
+        data.state.list = rowData
+        data.state.total = rowData.length
       } else {
-        mapKeys(data.state, (_, key) => {
+        mapKeys(rowData, (_, key) => {
           data.state[key] = rowData[key] === undefined ? (data.state[key] !== undefined ? data.state[key] : '') : rowData[key]
         })
       }
@@ -56,18 +58,19 @@ export default function useDialog({
     if (callRead) {
       const [res] = await callReadFetch(dataId)
       if (res) {
-        mapKeys(data.state, (_, key) => {
-          data.state[key] = res[key] === undefined ? '' : res[key]
+        mapKeys(res, (_, key) => {
+          data.state[key] = res[key] === undefined ? (data.state[key] !== undefined ? data.state[key] : '') : res[key]
         })
       }
     }
     if (callReadList) {
       const [res] = dataId ? await callReadListFetch(dataId, payload) : await callReadListFetch(payload)
       if (res) {
-        data.list = res.list
-        data.total = res.total
+        data.state.list = res.list
+        data.state.total = res.total
       }
     }
+    showDialogCallback()
     isShowDialog.value = true
   }
   const hideDialog = () => {
@@ -121,10 +124,16 @@ export default function useDialog({
     updateSuccess,
     deleteSuccess,
     readListSuccess,
+    createFail,
+    readFail,
+    updateFail,
+    deleteFail,
+    readListFail,
   })
 
   return {
     form,
+    dialog,
     mode,
     data,
     isShowDialog,

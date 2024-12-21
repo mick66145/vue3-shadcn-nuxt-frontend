@@ -1,43 +1,48 @@
 
-import { baseApiModules } from '@/api'
+import { FileResource } from '@core/modules/file/api'
 import { useApp } from '@/stores/app'
-import reduce from 'lodash-es/reduce'
 
-const fileResource = new baseApiModules.FileResource()
+const fileResource = FileResource({})
+
 export default function useBatchUpload () {
   const batchUpload = async (payload) => {
+    return await batchUploadCommon(payload, 'file')
+  }
+
+  const uploadResource = async (key, value, resUpload, errors, resourceType) => {
+    try {
+      if (!value) {
+        resUpload[key] = value
+        return
+      }
+      if (value.raw) {
+        const uploadFunction = fileResource.upload({ file: value.raw }).then(res => res.data)
+        const response = await uploadFunction
+        resUpload[key] = response.data
+      } else {
+        resUpload[key] = value
+      }
+    } catch (error) {
+      console.error(`Error uploading ${resourceType}:`, error)
+      resUpload[key] = value
+      errors.push({ key, error })
+    }
+  }
+
+  const batchUploadCommon = async (payload, resourceType) => {
     const storeApp = useApp()
     const resUpload = {}
     const errors = []
     storeApp.isLoading = true
-    await reduce(payload, async (req, value, key) => {
-      if (req) await req
-      return new Promise(resolve => {
-        if (!value) {
-          resUpload[key] = value
-          resolve(value)
-        } else if (value.raw) {
-          fileResource.upload({ file: value.raw })
-            .then(res => res.data)
-            .then(res => {
-              resUpload[key] = res.data
-              resolve(res)
-            })
-            .catch(error => {
-              console.log('🚀 ~ awaitreduce ~ error', error)
-              resUpload[key] = value
-              resolve(error)
-              errors.push(error)
-            })
-        } else {
-          resUpload[key] = value
-          resolve(value)
-        }
-      })
-    }, Promise.resolve())
+
+    for (const [key, value] of Object.entries(payload)) {
+      await uploadResource(key, value, resUpload, errors, resourceType)
+    }
+
     storeApp.isLoading = false
     return [resUpload, errors]
   }
+
   return {
     batchUpload,
   }
