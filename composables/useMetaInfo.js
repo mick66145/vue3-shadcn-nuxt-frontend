@@ -1,7 +1,7 @@
 import { useHead } from '@vueuse/head'
-import useTitle from '@/hooks/useTitle'
+import useTitle from '@/composables/useTitle'
 
-export default function useMetaInfo (
+export default function useMetaInfo(
   options = { title: '', description: '', image: '', titleTemplate: undefined },
 ) {
   // og:type

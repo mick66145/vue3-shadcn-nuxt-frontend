@@ -1,8 +1,8 @@
 import { ref } from 'vue-demi'
-import useCRUD from '@/hooks/useCRUD'
-import useQuickState from '@/hooks/useQuickState'
+import useCRUD from '@/composables/useCRUD'
+import useQuickState from '@/composables/useQuickState'
 import mapKeys from 'lodash-es/mapKeys'
-export default function useDialog ({
+export default function useDialog({
   formData,
   createFetch,
   createSuccess = '新增成功',

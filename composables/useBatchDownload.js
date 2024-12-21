@@ -1,9 +1,9 @@
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import { groupBy } from '@/utils/lodash'
-import useCRUD from '@/hooks/useCRUD'
+import useCRUD from '@/composables/useCRUD'
 
-export default function useBatchDownload ({
+export default function useBatchDownload({
   payload = null,
   readFetch,
   options = [],

@@ -1,7 +1,7 @@
 import FileSaver from 'file-saver'
-import useCRUD from '@/hooks/useCRUD'
+import useCRUD from '@/composables/useCRUD'
 
-export default function useDownload ({
+export default function useDownload({
   id = null,
   payload = null,
   readFetch,
