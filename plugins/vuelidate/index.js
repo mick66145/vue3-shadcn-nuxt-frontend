@@ -16,140 +16,140 @@ import {
 import dayjs from 'dayjs'
 
 export const vuelidate = {
-  is (value, message) {
+  is(value, message) {
     message = message !== undefined ? message : false
     return (val) => {
       let result
       switch (typeof value) {
-      case 'string':
-        result = String(val) === value
-        break
-      case 'number':
-        result = Number(val) === value
-        break
-      default:
-        result = val === value
+        case 'string':
+          result = String(val) === value
+          break
+        case 'number':
+          result = Number(val) === value
+          break
+        default:
+          result = val === value
       }
       return result || message
     }
   },
-  required (message = false) {
+  required(message = false) {
     return (val) => methods.required.$validator(val) || message
   },
-  requiredIf (ref, message = false) {
+  requiredIf(ref, message = false) {
     return (val) => methods.requiredIf(ref).$validator(val) || message
   },
-  requiredUnless (ref, message = false) {
+  requiredUnless(ref, message = false) {
     return (val) => methods.requiredUnless(ref).$validator(val) || message
   },
-  minLength (length, message = false) {
+  minLength(length, message = false) {
     return (val) => methods.minLength(length).$validator(val) || message
   },
-  maxLength (length, message = false) {
+  maxLength(length, message = false) {
     return (val) => methods.maxLength(length).$validator(val) || message
   },
-  minValue (value, message = false) {
+  minValue(value, message = false) {
     return (val) => methods.minValue(value).$validator(val) || message
   },
-  maxValue (value, message = false) {
+  maxValue(value, message = false) {
     return (val) => methods.maxValue(value).$validator(val) || message
   },
-  between (min, max, message = false) {
+  between(min, max, message = false) {
     return (val) => methods.between(min, max).$validator(val) || message
   },
-  alpha (message = false) {
+  alpha(message = false) {
     return (val) => methods.alpha.$validator(val) || message
   },
-  alphaNum (message = false) {
+  alphaNum(message = false) {
     return (val) => methods.alphaNum.$validator(val) || message
   },
-  numeric (message = false) {
+  numeric(message = false) {
     return (val) => methods.numeric.$validator(val) || message
   },
-  integer (message = false) {
+  integer(message = false) {
     return (val) => methods.integer.$validator(val) || message
   },
-  decimal (message = false) {
+  decimal(message = false) {
     return (val) => methods.decimal.$validator(val) || message
   },
-  email (message = false) {
+  email(message = false) {
     return (val) => methods.email.$validator(val) || message
   },
-  ipAddress (message = false) {
+  ipAddress(message = false) {
     return (val) => methods.ipAddress.$validator(val) || message
   },
-  macAddress (separator = ':', message = false) {
+  macAddress(separator = ':', message = false) {
     return (val) => methods.macAddress.$validator(separator)(val) || message
   },
-  url (message = false) {
+  url(message = false) {
     return (val) => methods.url.$validator(val) || message
   },
-  or (...args) {
+  or(...args) {
     let message = false
     if (typeof args[args.length - 1] === 'string') {
       message = args.pop()
     }
     return (val) => methods.or(...args).$validator(val) || message
   },
-  and (...args) {
+  and(...args) {
     let message = false
     if (typeof args[args.length - 1] === 'string') {
       message = args.pop()
     }
     return (val) => methods.and(...args).$validator(val) || message
   },
-  not (rule, message = false) {
+  not(rule, message = false) {
     return (val) => methods.not(rule).$validator(val) || message
   },
-  sameAs (locator, message = false) {
+  sameAs(locator, message = false) {
     return (val) => val === locator || message
   },
-  regex (regex, message = false) {
+  regex(regex, message = false) {
     return (val) => {
       if (!val) return true
       return regex.test(val) || message
     }
   },
-  dayjIsBefore (locator, message = false, format = 'YYYY-MM-DD') {
+  dayjIsBefore(locator, message = false, format = 'YYYY-MM-DD') {
     return (val) => {
       if (!val) return true
       return dayjs(val, format).isBefore(dayjs(locator, format)) || message
     }
   },
-  dayIsSameOrBefore (locator, message = false, format = 'YYYY-MM-DD') {
+  dayjIsSameOrBefore(locator, message = false, format = 'YYYY-MM-DD') {
     return (val) => {
       if (!val) return true
       return dayjs(val, format).isSameOrBefore(dayjs(locator, format)) || message
     }
   },
-  dayjIsAfter (locator, message = false, format = 'YYYY-MM-DD') {
+  dayjIsAfter(locator, message = false, format = 'YYYY-MM-DD') {
     return (val) => {
       if (!val) return true
       return dayjs(val, format).isAfter(dayjs(locator, format)) || message
     }
   },
-  dayIsSameOrAfter (locator, message = false, format = 'YYYY-MM-DD') {
+  dayjIsSameOrAfter(locator, message = false, format = 'YYYY-MM-DD') {
     return (val) => {
       if (!val) return true
       return dayjs(val, format).isSameOrAfter(dayjs(locator, format)) || message
     }
   },
-  isTrue (message = false) {
+  isTrue(message = false) {
     return (val) => val === true || message
   },
-  isGuiNumberValid (extended = true, message = false) {
+  isGuiNumberValid(extended = true, message = false) {
     return (val) => {
       if (!val) return true
       return isGuiNumberValid(val, extended) || message
     }
   },
-  isNationalIdentificationNumberValid (message = false) {
+  isNationalIdentificationNumberValid(message = false) {
     return (val) => {
       if (!val) return true
       return isNationalIdentificationNumberValid(val) || message
     }
   },
-  isCreditCardNumberValid (message = false) {
+  isCreditCardNumberValid(message = false) {
     return (val) => {
       if (!val) return true
       return isCreditCardNumberValid(val) || message
@@ -157,7 +157,7 @@ export const vuelidate = {
   },
 }
 
-export default function (app) {
-  app.config.globalProperties.$rules = vuelidate
-  app.provide('vuelidate', vuelidate)
-}
+export default defineNuxtPlugin(nuxtApp => {
+  nuxtApp.vueApp.config.globalProperties.$rules = vuelidate
+  nuxtApp.vueApp.provide('vuelidate', vuelidate)
+});

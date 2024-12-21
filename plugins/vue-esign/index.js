@@ -1,5 +1,5 @@
 import vueEsign from 'vue-esign'
 
-export default function (app) {
-  app.use(vueEsign)
-}
+export default defineNuxtPlugin(nuxtApp => {
+  nuxtApp.vueApp.use(vueEsign)
+});
