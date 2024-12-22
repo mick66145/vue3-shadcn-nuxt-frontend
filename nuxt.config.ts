@@ -39,6 +39,9 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: "tailwind.config.js",
   },
+  i18n: {
+    vueI18n: './i18n.config.js'
+  },
   runtimeConfig: {
     public: {
       backendHost: process.env.BACKEND_HOST || 'http://localhost:3000'
