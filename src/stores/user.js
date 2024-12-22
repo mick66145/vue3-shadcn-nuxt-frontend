@@ -19,16 +19,15 @@ export const useUser = defineStore({
       },
     },
     permissionList: [],
-    authResource: AuthResource({}),
   }),
   getters: {
     isLogin: state => !!state.token,
   },
   actions: {
 
-    login (payload) {
+    login(payload) {
       return new Promise((resolve, reject) => {
-        this.authResource.login({ payload })
+        AuthResource({}).login({ payload })
           .then(res => {
             const { data } = res
             this.setToken(data.token)
@@ -38,7 +37,7 @@ export const useUser = defineStore({
           })
       })
     },
-    register (payload) {
+    register(payload) {
       /* 如果有註冊的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.register({payload})
@@ -52,7 +51,7 @@ export const useUser = defineStore({
         resolve(true)
       })
     },
-    forgetPassword (payload) {
+    forgetPassword(payload) {
       /* 如果有忘記密碼的api就使用以下註解 */
       // return this.authResource.forgetPassword({payload})
       //   .then(res => {
@@ -63,7 +62,7 @@ export const useUser = defineStore({
       })
     },
 
-    getVerifyCode (payload) {
+    getVerifyCode(payload) {
       /* 如果有取得驗證碼的api就使用以下註解 */
       // return this.authResource.getVerifyCode({payload})
       //   .then(res => {
@@ -74,7 +73,7 @@ export const useUser = defineStore({
       })
     },
 
-    getLoginCaptcha (payload) {
+    getLoginCaptcha(payload) {
       /* 如果有登入驗證碼的api就使用以下註解 */
       // return this.authResource.getLoginCaptcha({payload})
       //   .then(res => {
@@ -85,7 +84,7 @@ export const useUser = defineStore({
       })
     },
 
-    bindCheck (payload) {
+    bindCheck(payload) {
       /* 如果有檢查綁定的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.bindCheck({ payload })
@@ -100,7 +99,7 @@ export const useUser = defineStore({
       })
     },
 
-    bind (payload) {
+    bind(payload) {
       /* 如果有綁定的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.bind({ payload })
@@ -117,7 +116,7 @@ export const useUser = defineStore({
       })
     },
 
-    unbind (payload) {
+    unbind(payload) {
       /* 如果有綁定的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.unbind({payload})
@@ -132,7 +131,7 @@ export const useUser = defineStore({
       })
     },
 
-    whoami () {
+    whoami() {
       /* 如果有Me的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.me()
@@ -147,12 +146,12 @@ export const useUser = defineStore({
       //     })
       // })
       return new Promise((resolve) => {
-        this.info = { }
+        this.info = {}
         resolve(true)
       })
     },
 
-    permission () {
+    permission() {
       /* 如果有權限的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   this.authResource.permission()
@@ -169,15 +168,15 @@ export const useUser = defineStore({
       })
     },
 
-    profile (payload) {
+    profile(payload) {
       return this.authResource.profile({ payload })
     },
 
-    changePassword (payload) {
+    changePassword(payload) {
       return this.authResource.changePassword({ payload })
     },
 
-    logout () {
+    logout() {
       /* 如果有登出的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
       //   return this.authResource.logout().then(res => {
@@ -191,7 +190,7 @@ export const useUser = defineStore({
       this.clear()
     },
 
-    refreshToken (payload) {
+    refreshToken(payload) {
       return this.authResource.refreshToken({ payload })
         .then(res => {
           const { data } = res
@@ -200,16 +199,16 @@ export const useUser = defineStore({
         })
     },
 
-    setToken (token) {
+    setToken(token) {
       setToken(token)
       this.token = token
     },
 
-    setSocialiteProvider (socialiteProvider) {
+    setSocialiteProvider(socialiteProvider) {
       this.socialiteProvider = socialiteProvider
     },
 
-    clear () {
+    clear() {
       this.token = ''
       removeToken()
       this.$reset()
