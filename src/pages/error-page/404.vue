@@ -20,11 +20,9 @@
 </template>
 
 <script>
-export default defineComponent({
-  setup() {
-    return {}
-  },
-})
+import { defineComponent } from 'vue-demi'
+
+export default defineComponent({})
 </script>
 
 <style lang="postcss" scoped>
