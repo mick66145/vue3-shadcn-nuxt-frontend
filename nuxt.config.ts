@@ -40,7 +40,20 @@ export default defineNuxtConfig({
     configPath: "tailwind.config.js",
   },
   i18n: {
-    vueI18n: './i18n.config.js'
+    vueI18n: './i18n.config.js',
+    langDir: 'locales/',
+    locales: [
+      { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
+      { code: 'zh-TW', name: '繁體中文', iso: 'zh-TW', file: 'zh-TW.json' },
+    ],
+    defaultLocale: 'zh-TW',
+    lazy: true,
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'language',
+      redirectOn: 'root'
+    }
   },
   runtimeConfig: {
     public: {
