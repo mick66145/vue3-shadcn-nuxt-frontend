@@ -1,6 +1,8 @@
 // import { Notify } from 'quasar'
 
 export default function useNotify() {
+  // TODO
+
   // const notify = ({ message, type = 'info', timeout = 3000, position = 'top' }) => Notify.create({
   //   message,
   //   type,
@@ -28,6 +30,22 @@ export default function useNotify() {
   //   textColor,
   //   icon,
   // })
+
+  const notify = () => {
+
+  }
+
+  const notifyAPIError = () => {
+
+  }
+
+  const notifyError = () => {
+
+  }
+
+  const customNotify = () => {
+
+  }
 
   return {
     notify,
