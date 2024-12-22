@@ -6,13 +6,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   srcDir: 'src/',
+  css: ['./assets/styles/index.scss'],
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
     'dayjs-nuxt',
     "nuxt-lodash",
     'nuxt-swiper',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    "@nuxtjs/tailwindcss"
   ],
   postcss: {
     plugins: {
@@ -20,7 +22,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  css: ['./assets/styles/index.scss'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -33,6 +34,9 @@ export default defineNuxtConfig({
         '@core': fileURLToPath(new URL('./@core', import.meta.url)),
       }
     }
+  },
+  tailwindcss: {
+    configPath: "tailwind.config.js",
   },
   runtimeConfig: {
     public: {
