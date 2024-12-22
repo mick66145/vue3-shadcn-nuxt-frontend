@@ -1,5 +1,6 @@
-import { i18n } from '@/plugins/i18n'
 import { defineStore } from 'pinia'
+
+const { $i18n } = useNuxtApp();
 
 export const useMessageDialogStore = defineStore({
   id: 'messageDialog',
@@ -16,7 +17,7 @@ export const useMessageDialogStore = defineStore({
     resolve: null,
   }),
   actions: {
-    alert ({
+    alert({
       title,
       message,
       persistent,
@@ -26,12 +27,12 @@ export const useMessageDialogStore = defineStore({
       cancelButtonColor,
       showCancel,
     }) {
-      this.title = title || i18n.global.t('g.dialog.default-title')
+      this.title = title || $i18n.t('g.dialog.default-title')
       this.message = message
       this.persistent = persistent || this.persistent
-      this.confirmButtonText = confirmButtonText || i18n.global.t('g.btn.confirm')
+      this.confirmButtonText = confirmButtonText || $i18n.t('g.btn.confirm')
       this.confirmButtonColor = confirmButtonColor || this.confirmButtonColor
-      this.cancelButtonText = cancelButtonText || i18n.global.t('g.btn.cancel')
+      this.cancelButtonText = cancelButtonText || $i18n.t('g.btn.cancel')
       this.cancelButtonColor = cancelButtonColor || this.cancelButtonColor
       this.showCancel = showCancel
       this.show = true
@@ -39,13 +40,13 @@ export const useMessageDialogStore = defineStore({
         this.resolve = resolve
       })
     },
-    confirm () {
+    confirm() {
       if (this.resolve) {
         this.resolve(true)
       }
       this.close()
     },
-    close () {
+    close() {
       this.show = false
       this.$reset()
     },

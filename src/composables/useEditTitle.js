@@ -1,6 +1,5 @@
 import { computed } from 'vue-demi'
 import { useRoute } from 'vue-router'
-import { i18n } from '@/plugins/i18n'
 
 export const modeTypes = {
   create: 'create',
@@ -8,14 +7,16 @@ export const modeTypes = {
   view: 'view',
 }
 
-const prefixNames = {
-  [modeTypes.create]: i18n.global.t('g.prefix.add'),
-  [modeTypes.edit]: i18n.global.t('g.prefix.edit'),
-  [modeTypes.view]: i18n.global.t('g.prefix.view'),
-}
-
-export default function useEditTitle (mode) {
+export default function useEditTitle(mode) {
   const route = useRoute()
+  const { $i18n } = useNuxtApp();
+
+  const prefixNames = {
+    [modeTypes.create]: $i18n.t('g.prefix.add'),
+    [modeTypes.edit]: $i18n.t('g.prefix.edit'),
+    [modeTypes.view]: $i18n.t('g.prefix.view'),
+  }
+
   const pageTitle = computed(() => {
     const metaTitle = route.meta.title
     return `${prefixNames[mode.value]}${metaTitle}`
