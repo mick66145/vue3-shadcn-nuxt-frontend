@@ -1,9 +1,11 @@
+import { useRouter } from 'vue-router'
 import { useUser } from '@/stores/user'
-import router from '@/router'
 import useNotify from './useNotify'
-export default function useLogout () {
+
+export default function useLogout() {
   const { notify } = useNotify()
   const storeUser = useUser()
+  const router = useRouter()
 
   const resetStore = async () => {
     await storeUser.logout()
