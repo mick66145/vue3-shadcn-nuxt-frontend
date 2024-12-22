@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   ],
   postcss: {
     plugins: {
+      'postcss-nested': {},
       tailwindcss: {},
       autoprefixer: {},
     },
@@ -31,7 +32,7 @@ export default defineNuxtConfig({
     },
     resolve: {
       alias: {
-        '@core': fileURLToPath(new URL('./@core', import.meta.url)),
+        '@core': fileURLToPath(new URL('./src/@core', import.meta.url)),
       }
     }
   },
