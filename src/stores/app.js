@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie'
-// import { getLanguage } from '@/plugins/i18n'
 import { defineStore } from 'pinia'
 
 export const useApp = defineStore({
@@ -9,7 +8,6 @@ export const useApp = defineStore({
       opened: false,
       withoutAnimation: false,
     },
-    // language: getLanguage(),
     isLoading: false,
     isReading: false,
     isReadingList: false,
@@ -18,10 +16,6 @@ export const useApp = defineStore({
     isDelete: false,
   }),
   actions: {
-    setLanguage(language) {
-      this.language = language
-      Cookies.set('language', language)
-    },
     toggleSideBar() {
       this.sidebar.opened = !this.sidebar.opened
       this.sidebar.withoutAnimation = false
