@@ -1,16 +1,27 @@
-import { useQuasar } from 'quasar'
+// import { useQuasar } from 'quasar'
 
-export default function useLoading () {
-  const $q = useQuasar()
+export default function useLoading() {
 
-  const showLoading = ({ message = '', spinnerColor = 'white', backgroundColor = 'black', messageColor = 'white' }) => $q.loading.show({
-    message,
-    spinnerColor,
-    backgroundColor,
-    messageColor,
-  })
+  // TODO
 
-  const hideLoading = () => $q.loading.hide()
+  // const $q = useQuasar()
+
+  // const showLoading = ({ message = '', spinnerColor = 'white', backgroundColor = 'black', messageColor = 'white' }) => $q.loading.show({
+  //   message,
+  //   spinnerColor,
+  //   backgroundColor,
+  //   messageColor,
+  // })
+
+  // const hideLoading = () => $q.loading.hide()
+
+  const showLoading = () => {
+
+  }
+
+  const hideLoading = () => {
+
+  }
 
   return {
     showLoading,
