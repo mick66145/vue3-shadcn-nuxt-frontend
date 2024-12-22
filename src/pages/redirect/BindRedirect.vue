@@ -3,8 +3,6 @@
 </template>
 
 <script>
-
-import { defineComponent, reactive, onMounted } from 'vue-demi'
 import { useRouter } from 'vue-router'
 import { useUser } from '@/stores/user'
 import useLine from '@/composables/useLine'
