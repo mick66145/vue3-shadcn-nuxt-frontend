@@ -14,7 +14,9 @@ export default defineNuxtConfig({
     "nuxt-lodash",
     'nuxt-swiper',
     '@nuxtjs/i18n',
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
+    '@nuxtjs/color-mode',
+    'shadcn-nuxt',
   ],
   postcss: {
     plugins: {
@@ -54,6 +56,10 @@ export default defineNuxtConfig({
       cookieKey: 'language',
       redirectOn: 'root'
     }
+  },
+  shadcn: {
+    prefix: '',
+    componentDir: 'src/@core/components'
   },
   runtimeConfig: {
     public: {
