@@ -7,6 +7,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src/',
   css: ['./assets/styles/index.scss'],
+  components: [
+    {
+      path: '@core/components',
+      extensions: ['vue'],
+      pathPrefix: false
+    },
+  ],
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
@@ -56,10 +63,6 @@ export default defineNuxtConfig({
       cookieKey: 'language',
       redirectOn: 'root'
     }
-  },
-  shadcn: {
-    prefix: '',
-    componentDir: 'src/@core/components'
   },
   runtimeConfig: {
     public: {
