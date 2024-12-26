@@ -51,9 +51,7 @@
     "vue-esign": "^1.1.4",
     "vue-router": "latest",
     "vue3-dnd": "^2.0.4",
-    "vue3-photo-preview": "^0.3.0",
-    "vxe-table": "^4.7.0",
-    "xe-utils": "^3.5.7"
+    "vue3-photo-preview": "^0.3.0"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
