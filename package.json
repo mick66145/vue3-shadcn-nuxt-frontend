@@ -3,8 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "server": "nuxt dev --host",
+    "localhost": "nuxt dev --dotenv .env.localhost --host",
+    "dev": "nuxt dev --dotenv .env.dev --host",
+    "beta": "nuxt dev --dotenv .env.beta --host",
+    "production": "nuxt dev --dotenv .env.production --host",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "build:dev": "nuxt build --dotenv .env.dev",
+    "build:beta": "nuxt build --dotenv .env.beta",
+    "build:production": "nuxt build --dotenv .env.production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
