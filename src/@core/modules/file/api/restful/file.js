@@ -1,8 +1,7 @@
-import Configuration from '@/configuration'
 import useResource from '@/composables/useResource'
 import useCustomFetch from '@/composables/useCustomFetch'
 
-const fileBaseUrl = `${Configuration('fileServerHost')}`
+const fileBaseUrl = process.env.FILE_SERVER_HOST
 
 export const FileResource = ({
   uri = 'file',
@@ -12,7 +11,7 @@ export const FileResource = ({
   const upload = async ({ file }) => {
     const formData = new FormData()
     formData.append('file', file)
-    
+
     return fetch(`/${uri}/upload`, {
       method: 'post',
       body: formData,

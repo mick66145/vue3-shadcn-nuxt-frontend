@@ -1,7 +1,6 @@
-import Configuration from '@/configuration'
 
-export default function useFileStorage () {
-  const fileBaseUrl = `${Configuration('fileServerHost')}`
+export default function useFileStorage() {
+  const fileBaseUrl = process.env.FILE_SERVER_HOST
 
   const getFileSrc = ({ id, showType = 'd' }) => {
     if (!id) return ''

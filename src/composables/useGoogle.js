@@ -1,11 +1,10 @@
 import { ref, computed } from 'vue-demi'
 import request from '@core/utils/request'
-import Configuration from '@/configuration'
 
 export default function useGoogle ({
-  channelId = Configuration('googleClientId'),
-  channelSecret = Configuration('googleClientSecret'),
-  redirectUri = Configuration('googleRedirectUri'),
+  channelId = process.env.GOOGLE_CLIENT_ID,
+  channelSecret = process.env.GOOGLE_CLIENT_SECRET,
+  redirectUri = process.env.GOOGLE_REDIRECT_URI,
   scope = 'profile+email',
 }) {
   // data

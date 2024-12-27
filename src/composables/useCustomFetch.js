@@ -7,11 +7,9 @@ import useLogout from '@/composables/useLogout'
 export default function useCustomFetch() {
   const createFetchOptions = (options = {}) => {
     const storeUser = useUser()
-    const config = useRuntimeConfig()
-
     // 基本配置
     const defaultOptions = {
-      baseURL: config.public.backendHost,
+      baseURL: process.env.BACKEND_HOST,
       credentials: 'include',
       timeout: 600000,
       headers: {}

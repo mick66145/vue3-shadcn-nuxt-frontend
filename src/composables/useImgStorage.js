@@ -1,7 +1,6 @@
-import Configuration from '@/configuration'
 
-export default function useImgStorage () {
-  const fileBaseUrl = `${Configuration('fileServerHost')}`
+export default function useImgStorage() {
+  const fileBaseUrl = process.env.FILE_SERVER_HOST
   const getImageSrc = ({ filename, size = '100x' }) => {
     if (!filename) return ''
     const url = `${fileBaseUrl}/display/resize/${size}/${filename}`
