@@ -1,11 +1,10 @@
 import { ref, computed } from 'vue-demi'
 import request from '@core/utils/request'
-import Configuration from '@/configuration'
 
-export default function useFacebook ({
-  channelId = Configuration('facebookClientId'),
-  channelSecret = Configuration('facebookClientSecret'),
-  redirectUri = Configuration('facebookRedirectUri'),
+export default function useFacebook({
+  channelId = process.env.FACEBOOK_CLIENT_ID,
+  channelSecret = process.env.FACEBOOK_CLIENT_SECRET,
+  redirectUri = process.env.FACEBOOK_REDIRECT_URI,
   scope = 'profile+email',
 }) {
   // data
@@ -41,7 +40,7 @@ export default function useFacebook ({
         })
         const { access_token: accessToken, id_token: idToken } = response.data
         return { accessToken, idToken }
-      } catch (error) {}
+      } catch (error) { }
     }
   }
 

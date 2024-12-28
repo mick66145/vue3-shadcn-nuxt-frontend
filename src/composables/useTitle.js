@@ -1,16 +1,15 @@
 import { computed } from 'vue-demi'
 import { useRoute } from 'vue-router'
-import configuration from '@/configuration'
 
 export default function useTitle() {
   const route = useRoute()
   const { $i18n } = useNuxtApp()
 
-  const webTitle = configuration('title') || 'ClientFrontend Base'
+  const webTitle = 'ClientFrontend Base'
 
   const prefix = computed(() => {
     if (import.meta.env.MODE !== 'development') return ''
-    return import.meta.env.VITE_IS_LOCAL === 'true' ? '[開發] ' : '[測試] '
+    return import.meta.env.IS_LOCAL === 'true' ? '[開發] ' : '[測試] '
   })
 
   const title = computed(() => {

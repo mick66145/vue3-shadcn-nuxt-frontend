@@ -1,11 +1,10 @@
 import { ref, computed } from 'vue-demi'
 import request from '@core/utils/request'
-import Configuration from '@/configuration'
 
 export default function useLine ({
-  channelId = Configuration('lineClientId'),
-  channelSecret = Configuration('lineClientSecret'),
-  redirectUri = Configuration('lineRedirectUri'),
+  channelId = process.env.LINE_CLIENT_ID,
+  channelSecret = process.env.LINE_CLIENT_SECRET,
+  redirectUri = process.env.LINE_REDIRECT_URI,
   scope = 'profile openid email',
 }) {
   // data
