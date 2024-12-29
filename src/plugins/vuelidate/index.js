@@ -13,7 +13,7 @@ import {
   isCreditCardNumberValid, // 信用卡
 } from './taiwan-id-validator'
 
-import dayjs from 'dayjs'
+const dayjs = useDayjs()
 
 export const vuelidate = {
   is(value, message) {
