@@ -46,10 +46,10 @@ export default defineNuxtConfig({
     }
   },
   tailwindcss: {
-    configPath: "tailwind.config.js",
+    configPath: "./config/tailwind/tailwind.config.js",
   },
   i18n: {
-    vueI18n: './i18n.config.js',
+    vueI18n: './config/i18n/i18n.config.js',
     langDir: 'locales/',
     locales: [
       { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
