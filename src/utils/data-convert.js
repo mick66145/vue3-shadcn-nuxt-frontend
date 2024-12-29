@@ -1,11 +1,12 @@
-import { $dayjs } from '@/plugins/dayjs'
+
+const dayjs = useDayjs()
 
 export const convertDateTime = (v, format = 'YYYY/MM/DD') => {
-  return $dayjs(v).format(format)
+  return dayjs(v).format(format)
 }
 
 export const convertDayOfWeek = (v) => {
-  const day = $dayjs(v).day()
+  const day = dayjs(v).day()
   const week = ['日', '一', '二', '三', '四', '五', '六']
   return week[day]
 }
@@ -23,17 +24,17 @@ export const convertMoney = (number, places, symbol, thousand, decimal) => {
   return negative + symbol + (j ? i.substr(0, j) + thousand : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : '')
 }
 
-export function convertTrueFalseString (word) {
+export function convertTrueFalseString(word) {
   if (typeof word === 'string') {
     switch (word.toLowerCase().trim()) {
-    case 'yes': case 'true': case '1': return true
-    case 'no': case 'false': case '0': case null : return false
-    default: return Boolean(word)
+      case 'yes': case 'true': case '1': return true
+      case 'no': case 'false': case '0': case null: return false
+      default: return Boolean(word)
     }
   } else if (typeof word === 'number') {
     switch (word) {
-    case 1: return true
-    case 0: return false
+      case 1: return true
+      case 0: return false
     }
   } else {
     return word

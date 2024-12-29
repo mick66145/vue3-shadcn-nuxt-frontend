@@ -1,5 +1,5 @@
 
-// import { convertDateTime } from '@/utils/data-convert'
+import { convertDateTime } from '@/utils/data-convert'
 const FrontendMenu = () => ({
   id: null,
   created_at: null,
@@ -17,8 +17,8 @@ export const FrontendMenuModel = (item = null) => {
   const model = (item) => {
     const frontendMenuObj = {
       id: item?.id || null,
-      // created_at: item?.created_at ? convertDateTime(item?.created_at) : convertDateTime(),
-      // updated_at: item?.updated_at ? convertDateTime(item?.updated_at, 'YYYY/MM/DD HH:mm:ss') : null,
+      created_at: item?.created_at ? convertDateTime(item?.created_at) : convertDateTime(),
+      updated_at: item?.updated_at ? convertDateTime(item?.updated_at, 'YYYY/MM/DD HH:mm:ss') : null,
       name: item?.name || null,
       link: item?.link || null,
       type: item?.type || null,
