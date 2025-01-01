@@ -57,7 +57,7 @@ $h5: (size: 1.5rem,   line-height: 2rem,     letter-spacing: normal,    weight: 
 $h6: (size: 1.25rem,  line-height: 2rem,     letter-spacing: 0.0125em,   weight: 500) !default;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
-$headings: ("h1": $h1, "h2": $h2, "h3": $h3, "h4": $h4, "h5": $h5, "h6": $h6, "subtitle1": $subtitle1, "subtitle2": $subtitle2, "body1": $body1, "body2": $body2, "overline": $overline, "caption": $caption) !default;
+$headings: ("h1": $h1, "h2": $h2, "h3": $h3, "h4": $h4, "h5": $h5, "h6": $h6) !default;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
 $h-tags: (h1: map-get($headings, "h1"), h2: map-get($headings, "h2"), h3: map-get($headings, "h3"), h4: map-get($headings, "h4"), h5: map-get($headings, "h5"), h6: map-get($headings, "h6")) !default;
