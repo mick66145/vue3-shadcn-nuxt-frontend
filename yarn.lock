@@ -830,7 +830,7 @@
     which "^3.0.1"
     ws "^8.18.0"
 
-"@nuxt/kit@^3.12.4", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.13.2", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.7.0", "@nuxt/kit@^3.7.4", "@nuxt/kit@^3.8.0", "@nuxt/kit@3.14.1592":
+"@nuxt/kit@^3.13.1", "@nuxt/kit@^3.13.2", "@nuxt/kit@^3.14.159", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.7.0", "@nuxt/kit@^3.7.4", "@nuxt/kit@^3.8.0", "@nuxt/kit@3.14.1592":
   version "3.14.1592"
   resolved "https://registry.npmjs.org/@nuxt/kit/-/kit-3.14.1592.tgz"
   integrity sha512-r9r8bISBBisvfcNgNL3dSIQHSBe0v5YkX5zwNblIC2T0CIEgxEVoM5rq9O5wqgb5OEydsHTtT2hL57vdv6VT2w==
@@ -991,11 +991,6 @@
     tailwindcss "~3.4.13"
     ufo "^1.5.4"
     unctx "^2.3.1"
-
-"@oxc-parser/wasm@^0.29.0":
-  version "0.29.0"
-  resolved "https://registry.npmjs.org/@oxc-parser/wasm/-/wasm-0.29.0.tgz"
-  integrity sha512-Ks5yFtJHypJZUdSNLImwtfkDt0/8ll9CDPyfmldhudtKB/1o6F/WQGWA4Oo+bCskDIp2MPKc3HfHccN3ALhtSg==
 
 "@parcel/watcher-darwin-arm64@2.5.0":
   version "2.5.0"
@@ -1267,6 +1262,11 @@
   version "0.0.16"
   resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz"
   integrity sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==
+
+"@types/web-bluetooth@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz"
+  integrity sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==
 
 "@ungap/structured-clone@^1.2.0":
   version "1.2.1"
@@ -1573,7 +1573,17 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/core@^9.6.0", "@vueuse/core@9.13.0":
+"@vueuse/core@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/core/-/core-12.2.0.tgz"
+  integrity sha512-jksyNu+5EGwggNkRWd6xX+8qBkYbmrwdFQMgCABsz+wq8bKF6w3soPFLB8vocFp3wFIzn0OYkSPM9JP+AFKwsg==
+  dependencies:
+    "@types/web-bluetooth" "^0.0.20"
+    "@vueuse/metadata" "12.2.0"
+    "@vueuse/shared" "12.2.0"
+    vue "^3.5.13"
+
+"@vueuse/core@9.13.0":
   version "9.13.0"
   resolved "https://registry.npmjs.org/@vueuse/core/-/core-9.13.0.tgz"
   integrity sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==
@@ -1582,6 +1592,11 @@
     "@vueuse/metadata" "9.13.0"
     "@vueuse/shared" "9.13.0"
     vue-demi "*"
+
+"@vueuse/metadata@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-12.2.0.tgz"
+  integrity sha512-x6zynZtTh1l52m0y8d/EgzpshnMjg8cNZ2KWoncJ62Z5qPSGoc4FUunmMVrrRM/I/5542rTEY89CGftngZvrkQ==
 
 "@vueuse/metadata@9.13.0":
   version "9.13.0"
@@ -1598,6 +1613,13 @@
     "@vueuse/metadata" "9.13.0"
     local-pkg "^0.4.3"
     vue-demi "*"
+
+"@vueuse/shared@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-12.2.0.tgz"
+  integrity sha512-SRr4AZwv/giS+EmyA1ZIzn3/iALjjnWAGaBNmoDTMEob9JwQaevAocuaMDnPAvU7Z35Y5g3CFRusCWgp1gVJ3Q==
+  dependencies:
+    vue "^3.5.13"
 
 "@vueuse/shared@9.13.0":
   version "9.13.0"
@@ -2776,6 +2798,14 @@ easy-bem@^1.0.2:
   version "1.1.1"
   resolved "https://registry.npmjs.org/easy-bem/-/easy-bem-1.1.1.tgz"
   integrity sha512-GJRqdiy2h+EXy6a8E6R+ubmqUM08BK0FWNq41k24fup6045biQ8NXxoXimiwegMQvFFV3t1emADdGNL1TlS61A==
+
+echarts@^5.5.1:
+  version "5.6.0"
+  resolved "https://registry.npmjs.org/echarts/-/echarts-5.6.0.tgz"
+  integrity sha512-oTbVTsXfKuEhxftHqL5xprgLoc0k7uScAwtryCgWF6hPYFLRwOUHiFmHGCBKP5NPFNkDVopOieyUqYGH8Fa3kA==
+  dependencies:
+    tslib "2.3.0"
+    zrender "5.6.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -5053,6 +5083,14 @@ nuxi@^3.15.0:
   resolved "https://registry.npmjs.org/nuxi/-/nuxi-3.17.1.tgz"
   integrity sha512-Uz3RlQt8IvhvFfA+rQPxG1mRPckMF9TwPzyEh136iZlSW9khcyHvA2uqC++VNlgMRbVyjvhTq8bCpyNPHHZwrA==
 
+nuxt-echarts@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/nuxt-echarts/-/nuxt-echarts-0.2.4.tgz"
+  integrity sha512-XLSJAuxLFYihRYhXDBWYq+IFNRqaMBvBFNGNfdZAq1FjUU9F0vzyelQkXtjzIMAFf5kcwiXN9ypptFWG8TB1pw==
+  dependencies:
+    "@nuxt/kit" "^3.14.159"
+    echarts "^5.5.1"
+
 nuxt-lodash@^2.5.3:
   version "2.5.3"
   resolved "https://registry.npmjs.org/nuxt-lodash/-/nuxt-lodash-2.5.3.tgz"
@@ -6305,15 +6343,6 @@ setprototypeof@1.2.0:
   resolved "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-shadcn-nuxt@0.11.3:
-  version "0.11.3"
-  resolved "https://registry.npmjs.org/shadcn-nuxt/-/shadcn-nuxt-0.11.3.tgz"
-  integrity sha512-Q0OxqTEbTmtbm/4wV9jd/7DTQYn65AGHkVJZjjHQdHGHTHCwhAbZ2jlCPnMuzJ8kgSsJyXFGNcImAphDCjjV5w==
-  dependencies:
-    "@nuxt/kit" "^3.12.4"
-    "@oxc-parser/wasm" "^0.29.0"
-    typescript "^5.6.3"
-
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
@@ -6918,6 +6947,11 @@ ts-node@^10.8.1, ts-node@>=10, ts-node@>=9.0.0:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 tsml@1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/tsml/-/tsml-1.0.1.tgz"
@@ -6978,7 +7012,7 @@ type-is@^1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@*, "typescript@^4.6.4 || ^5.2.2", typescript@^5.6.3, typescript@^5.x, typescript@>=2.7, typescript@>=4, typescript@>=4.4.4, typescript@>=4.9.5:
+typescript@*, "typescript@^4.6.4 || ^5.2.2", typescript@^5.x, typescript@>=2.7, typescript@>=4, typescript@>=4.4.4, typescript@>=4.9.5:
   version "5.7.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.7.2.tgz"
   integrity sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==
@@ -7744,3 +7778,10 @@ zip-stream@^6.0.1:
     archiver-utils "^5.0.0"
     compress-commons "^6.0.2"
     readable-stream "^4.0.0"
+
+zrender@5.6.1:
+  version "5.6.1"
+  resolved "https://registry.npmjs.org/zrender/-/zrender-5.6.1.tgz"
+  integrity sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==
+  dependencies:
+    tslib "2.3.0"
