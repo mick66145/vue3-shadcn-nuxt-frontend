@@ -2,7 +2,7 @@
 import LoginLayout from '@/layouts/LoginLayout.vue'
 
 const entryRouter = {
-  path: '/entry',
+  path: '/:lang?/entry',
   component: LoginLayout,
   redirect: { name: 'Login' },
   children: [

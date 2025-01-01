@@ -9,7 +9,11 @@ import memberCenterRouter from './modules/member-center'
 
 export const constantRoutes = [
     {
-        path: '/',
+        path: '/:catchAll(.*)*',
+        component: () => import('@/pages/error-page/404.vue'),
+    },
+    {
+        path: '/:lang?',
         component: MainLayout,
         children: [
             {
@@ -21,11 +25,13 @@ export const constantRoutes = [
         ],
     },
     {
-        path: '/:catchAll(.*)*',
+        path: '/404',
+        name: '404',
         component: () => import('@/pages/error-page/404.vue'),
+        hidden: true,
     },
-    entryRouter,
     redirectRouter,
+    entryRouter,
     memberCenterRouter,
 ]
 

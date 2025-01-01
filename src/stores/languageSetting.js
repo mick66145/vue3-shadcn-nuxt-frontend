@@ -24,6 +24,9 @@ export const useLanguageSetting = defineStore({
         resolve(true)
       })
     },
-  },
-
+    isValidLang(lang) {
+      const localeList = this.languageSettingList.map(item => item.locale)
+      return localeList.includes(lang)
+    }
+  }
 })
