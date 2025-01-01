@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-black text-white w-full fixed bottom-0 left-0 py-4">
     <div class="flex justify-center items-center">
-      <p class="text-sm">© 2024 Ming All Rights Reserved.</p>
+      <span class="text-sm">© 2024 Ming All Rights Reserved.</span>
     </div>
   </footer>
 </template>
