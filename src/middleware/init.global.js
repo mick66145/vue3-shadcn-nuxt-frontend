@@ -11,6 +11,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
             await languageSettingStore.getLanguageSetting();
         }
     } catch (error) {
-        console.error('Dynamic route error:', error);
+        console.error('init error:', error);
     }
 });
