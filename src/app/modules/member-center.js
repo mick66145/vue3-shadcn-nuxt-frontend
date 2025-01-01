@@ -2,7 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.vue'
 
 const memberCenterRouter = {
-  path: '/member-center',
+  path: '/:lang?/member-center',
   component: MainLayout,
   meta: {
     title: 'member-center.title',
