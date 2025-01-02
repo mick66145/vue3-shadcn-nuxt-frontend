@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     '@nuxtjs/color-mode',
     'nuxt-echarts',
+    'nuxt-simple-sitemap',
   ],
   postcss: {
     plugins: {
@@ -65,4 +66,21 @@ export default defineNuxtConfig({
       redirectOn: 'root'
     }
   },
+  site: {
+    url: 'http://example.com'
+  },
+  sitemap: {
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.8,
+    },
+    sitemaps: false,
+    xslColumns: [
+      { label: 'URL', width: '25%' },
+      { label: 'Last Modified', select: 'sitemap:lastmod', width: '25%' },
+      { label: 'Change Frequency', select: 'sitemap:changefreq', width: '25%' },
+      { label: 'Priority', select: 'sitemap:priority', width: '12.5%' },
+      { label: 'Hreflangs', select: 'count(xhtml:link)', width: '12.5%' }
+    ]
+  }
 })
