@@ -67,13 +67,14 @@ export default defineNuxtConfig({
     }
   },
   site: {
-    url: 'http://example.com'
+    url: 'http://localhost:3000'
   },
   sitemap: {
     defaults: {
       changefreq: 'daily',
       priority: 0.8,
     },
+    inferStaticPagesAsRoutes: false,
     sitemaps: false,
     xslColumns: [
       { label: 'URL', width: '25%' },
@@ -81,6 +82,6 @@ export default defineNuxtConfig({
       { label: 'Change Frequency', select: 'sitemap:changefreq', width: '25%' },
       { label: 'Priority', select: 'sitemap:priority', width: '12.5%' },
       { label: 'Hreflangs', select: 'count(xhtml:link)', width: '12.5%' }
-    ]
+    ],
   }
 })
