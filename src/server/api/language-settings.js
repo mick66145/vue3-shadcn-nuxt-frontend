@@ -3,8 +3,7 @@ import { languageSettingService } from '@/server/services/language-setting/langu
 export default defineEventHandler(async (event) => {
     try {
         const query = getQuery(event)
-        const data = await languageSettingService.list({ query })
-
+        const { data } = await languageSettingService.getList({ query })
         return {
             status: true,
             data,

@@ -1,15 +1,8 @@
-import { fetch } from '@/server/utils/fetch'
-
-const uri = 'language_setting'
+import { languageSettingHttpClientService } from '@/server/services/language-setting/languageSettingHttpClientService'
 
 export const languageSettingService = {
-  async list({ query }) {
-    const { data } = await fetch({
-      url: `${uri}`,
-      method: 'GET',
-      params: query
-    })
-
-    return data
+  async getList({ query }) {
+    const { data } = await languageSettingHttpClientService.list({ query })
+    return { data }
   }
-} 
+}
