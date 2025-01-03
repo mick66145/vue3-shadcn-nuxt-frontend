@@ -7,7 +7,7 @@
 <script>
 import { defineComponent } from 'vue-demi'
 export default defineComponent({
-  setup () {
+  setup() {
     return {
     }
   },
@@ -15,8 +15,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
- @import "@/assets/styles/abstracts/variables.scss";
+@import "@/assets/styles/abstracts/variables";
 $container-padding: 20px;
+
 .container,
 .container-sm,
 .container-md,
@@ -30,6 +31,7 @@ $container-padding: 20px;
 }
 
 @media (max-width: $breakpoint-xs-max) {
+
   .container,
   .container-sm,
   .container-md,
@@ -40,6 +42,7 @@ $container-padding: 20px;
 }
 
 @media (min-width: $breakpoint-sm-min) {
+
   .container,
   .container-sm {
     max-width: $breakpoint-xs - $container-padding;
@@ -47,6 +50,7 @@ $container-padding: 20px;
 }
 
 @media (min-width: $breakpoint-md-min) {
+
   .container,
   .container-sm,
   .container-md {
@@ -55,6 +59,7 @@ $container-padding: 20px;
 }
 
 @media (min-width: $breakpoint-lg-min) {
+
   .container,
   .container-sm,
   .container-md,
@@ -64,6 +69,7 @@ $container-padding: 20px;
 }
 
 @media (min-width: $breakpoint-xl-min) {
+
   .container,
   .container-sm,
   .container-md,
@@ -74,6 +80,7 @@ $container-padding: 20px;
 }
 
 @media (min-width: $breakpoint-2xl-min) {
+
   .container,
   .container-sm,
   .container-md,
@@ -85,6 +92,7 @@ $container-padding: 20px;
 }
 
 @media screen and (width >=1600px) {
+
   .container,
   .container-sm,
   .container-md,
@@ -96,6 +104,7 @@ $container-padding: 20px;
 }
 
 @media screen and (width >=1800px) {
+
   .container,
   .container-sm,
   .container-md,
